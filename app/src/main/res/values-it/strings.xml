@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="loading_progressMessage">Attendere prego...</string>
+    <string name="selection_data1">Dati in ingresso 1</string>
+    <string name="selection_data2">Dati in ingresso 2</string>
+    <string name="selection_data3">Dati in ingresso 3</string>
+
+</resources>

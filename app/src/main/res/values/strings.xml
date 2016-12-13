@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">LastMinuteQuiz</string>
+
+
+    <string name="loading_progressMessage">Please wait...</string>
+    <string name="selection_data1">Input data 1</string>
+    <string name="selection_data2">Input data 2</string>
+    <string name="selection_data3">Input data 3</string>
+
+
 </resources>
