@@ -5,4 +5,13 @@
     android:layout_height="match_parent" >
 
 
+
+    <ImageView
+        android:id="@+id/applicationLogo"
+        android:src="@drawable/logo"
+        android:layout_centerInParent="true"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+
 </RelativeLayout>
