@@ -13,12 +13,14 @@ import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.giumig.apps.lastminutequiz.R;
+import com.giumig.apps.lastminutequiz.fragments.DataProcessingFragment;
 import com.giumig.apps.lastminutequiz.fragments.SelectionFragment;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private static final String FRAGMENT_TAG_SELECTION = "FRAGMENT_TAG_SELECTION";
+    private static final String FRAGMENT_TAG_PROCESSING = "FRAGMENT_TAG_PROCESSING";
 
 
     public static final String SELECTED_INPUT_DATA_EVENT = "SELECTED_INPUT_DATA_EVENT";
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             int selectedData = intent.getIntExtra(SELECTED_INPUT_DATA_KEY, 1);
             Log.d(TAG, "data input selected: " + selectedData);
+            addDataProcessingFragment(selectedData);
         }
     };
 
@@ -94,6 +97,15 @@ public class MainActivity extends AppCompatActivity {
         SelectionFragment fragment = SelectionFragment.newInstance();
         transaction.add(fragmentContainer.getId(), fragment, FRAGMENT_TAG_SELECTION);
         transaction.addToBackStack(FRAGMENT_TAG_SELECTION);
+        transaction.commit();
+        getSupportFragmentManager().executePendingTransactions();
+    }
+
+    private void addDataProcessingFragment(int selectedDataset) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        DataProcessingFragment fragment = DataProcessingFragment.newInstance(selectedDataset);
+        transaction.add(fragmentContainer.getId(), fragment, FRAGMENT_TAG_PROCESSING);
+        transaction.addToBackStack(FRAGMENT_TAG_PROCESSING);
         transaction.commit();
         getSupportFragmentManager().executePendingTransactions();
     }
