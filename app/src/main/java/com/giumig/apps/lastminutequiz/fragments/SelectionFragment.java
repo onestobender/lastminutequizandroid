@@ -46,6 +46,10 @@ public class SelectionFragment extends Fragment {
         data2Button = (AppCompatButton) rootView.findViewById(R.id.data2Button);
         data3Button = (AppCompatButton) rootView.findViewById(R.id.data3Button);
 
+        data1Button.setOnClickListener(data1ClickListener);
+        data2Button.setOnClickListener(data2ClickListener);
+        data3Button.setOnClickListener(data3ClickListener);
+
     }
 
 
@@ -64,14 +68,14 @@ public class SelectionFragment extends Fragment {
         }
     };
 
-    private View.OnClickListener data1ClickListener = new View.OnClickListener() {
+    private View.OnClickListener data2ClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
         }
     };
 
-    private View.OnClickListener data1ClickListener = new View.OnClickListener() {
+    private View.OnClickListener data3ClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
