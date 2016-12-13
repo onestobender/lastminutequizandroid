@@ -1,9 +1,15 @@
 package com.giumig.apps.lastminutequiz.activities;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.giumig.apps.lastminutequiz.R;
@@ -13,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String FRAGMENT_TAG_SELECTION = "FRAGMENT_TAG_SELECTION";
+
+
+    public static final String SELECTED_INPUT_DATA_EVENT = "SELECTED_INPUT_DATA_EVENT";
+    public static final String SELECTED_INPUT_DATA_KEY = "SELECTED_INPUT_DATA_KEY";
 
 
     private String TAG;
@@ -28,8 +38,34 @@ public class MainActivity extends AppCompatActivity {
         TAG = getClass().getSimpleName();
 
         initResources();
+
+        //register to data input event
+        LocalBroadcastManager.getInstance(this).registerReceiver(selectedInputDataReceiver,
+                new IntentFilter(SELECTED_INPUT_DATA_EVENT));
+
         addSelectionFragment();
     }
+
+
+    @Override
+    protected void onDestroy() {
+
+        //unregister
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(selectedInputDataReceiver);
+        super.onDestroy();
+    }
+
+
+    private BroadcastReceiver selectedInputDataReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int selectedData = intent.getIntExtra(SELECTED_INPUT_DATA_KEY, 1);
+            Log.d(TAG, "data input selected: " + selectedData);
+        }
+    };
+
+
+
 
 
     private void initResources()    {
@@ -81,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
              */
             getSupportFragmentManager().popBackStackImmediate();
         }
+
 
     }
 }
