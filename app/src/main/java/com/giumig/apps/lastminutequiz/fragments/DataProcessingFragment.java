@@ -165,8 +165,8 @@ public class DataProcessingFragment extends BaseFragment {
     private void showPurchaseResult(List<PurchasedGood> items)  {
 
         String message = "";
-        double finalTaxes = 0.00;
-        double total = 0.00;
+        double finalTaxes = 0.0;
+        double total = 0.0;
 
         for(PurchasedGood current : items)
         {

@@ -7,7 +7,6 @@ package com.giumig.apps.lastminutequiz.model;
 public class PurchasedGood {
 
     private Good good;
-    private double finalPrice;
     private double basicSaleTax;
     private double importTax;
 

@@ -128,22 +128,6 @@ public class CartManager {
 */
     }
 
-    private double round(double value, int taxRate) {
-
-        double val = (value * taxRate) / 100.0;
-
-        DecimalFormat df = new DecimalFormat("#.00");
-        String formate = df.format(val);
-        try {
-            double rounded = (double) df.parse(formate);
-            Log.d(TAG, "" + value + "("+val+") was rounded to " + rounded);
-            return rounded;
-        } catch (ParseException e) {
-            Log.d(TAG, "" + value + "was not rounded");
-            e.printStackTrace();
-            return value;
-        }
-    }
 
 
 }
