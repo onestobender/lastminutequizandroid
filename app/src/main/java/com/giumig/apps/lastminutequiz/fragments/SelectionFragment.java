@@ -20,9 +20,8 @@ import com.giumig.apps.lastminutequiz.activities.MainActivity;
  * Created by gius on 13/12/16.
  */
 
-public class SelectionFragment extends Fragment {
+public class SelectionFragment extends BaseFragment {
 
-    private View rootView;
 
     private AppCompatButton data1Button, data2Button, data3Button;
 
@@ -52,7 +51,6 @@ public class SelectionFragment extends Fragment {
         data1Button.setTag(1);
         data2Button.setTag(2);
         data3Button.setTag(3);
-
 
     }
 

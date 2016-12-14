@@ -5,4 +5,8 @@
     <string name="selection_data2">Dati in ingresso 2</string>
     <string name="selection_data3">Dati in ingresso 3</string>
 
+    <string name="imported_good_header">Importato</string>
+    <string name="purchase_title">Acquista</string>
+
+
 </resources>

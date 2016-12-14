@@ -48,7 +48,7 @@ public class DataManager {
 
             try {
                 Log.d(TAG, "fake retrieving data delay...(e.g. json dowload from an API)");
-                Thread.sleep(3000);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

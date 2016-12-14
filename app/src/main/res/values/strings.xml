@@ -7,5 +7,8 @@
     <string name="selection_data2">Input data 2</string>
     <string name="selection_data3">Input data 3</string>
 
+    <string name="imported_good_header">Imported</string>
+    <string name="purchase_title">Purchase</string>
+
 
 </resources>

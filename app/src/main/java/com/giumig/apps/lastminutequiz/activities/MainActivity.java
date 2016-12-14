@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             int selectedData = intent.getIntExtra(SELECTED_INPUT_DATA_KEY, 1);
             Log.d(TAG, "data input selected: " + selectedData);
+
             addDataProcessingFragment(selectedData);
         }
     };
