@@ -76,15 +76,15 @@ public class DataManager {
 
             Good book = new Good();
             book.setType(Good.GoodType.BOOK);
-            book.setPrice(12.49);
+            book.setPrice(new Double(12.49));
 
             Good cd = new Good();
             cd.setType(Good.GoodType.GENERIC);
-            cd.setPrice(14.99);
+            cd.setPrice(new Double(14.99));
 
             Good chocolateBar = new Good();
             chocolateBar.setType(Good.GoodType.FOOD);
-            chocolateBar.setPrice(0.85);
+            chocolateBar.setPrice(new Double(0.85));
 
             goods.add(book);
             goods.add(cd);
@@ -139,12 +139,12 @@ public class DataManager {
 
             Good importedBox = new Good();
             importedBox.setType(Good.GoodType.FOOD);
-            importedBox.setPrice(10.00);
+            importedBox.setPrice(new Double(10.00));
             importedBox.setImported(true);
 
             Good importedPerfume = new Good();
             importedPerfume.setType(Good.GoodType.GENERIC);
-            importedPerfume.setPrice(47.50);
+            importedPerfume.setPrice(new Double(47.50));
             importedPerfume.setImported(true);
 
             goods.add(importedBox);
@@ -203,20 +203,20 @@ public class DataManager {
 
             Good importedPerfume = new Good();
             importedPerfume.setType(Good.GoodType.GENERIC);
-            importedPerfume.setPrice(27.99);
+            importedPerfume.setPrice(new Double(27.99));
             importedPerfume.setImported(true);
 
             Good perfume = new Good();
             perfume.setType(Good.GoodType.GENERIC);
-            perfume.setPrice(18.99);
+            perfume.setPrice(new Double(18.99));
 
             Good pills = new Good();
             pills.setType(Good.GoodType.MEDICAL_PRODUCT);
-            pills.setPrice(9.75);
+            pills.setPrice(new Double(9.75));
 
             Good importedBox = new Good();
             importedBox.setType(Good.GoodType.FOOD);
-            importedBox.setPrice(11.25);
+            importedBox.setPrice(new Double(11.25));
             importedBox.setImported(true);
 
             goods.add(importedPerfume);

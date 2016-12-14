@@ -9,7 +9,7 @@
     <string name="purchase_title">Acquista</string>
     <string name="purchased_title">Hai acquistato</string>
     <string name="purchase_taxes">Tasse di vendita</string>
-
+    <string name="purchase_total">Totale</string>
 
 
 </resources>

@@ -23,12 +23,9 @@ public class PurchasedGood {
     }
 
     public double getFinalPrice() {
-        return finalPrice;
+        return good.getPrice() + getBasicSaleTax() + getImportTax();
     }
 
-    public void setFinalPrice(double finalPrice) {
-        this.finalPrice = finalPrice;
-    }
 
     public double getBasicSaleTax() {
         return basicSaleTax;
@@ -45,4 +42,6 @@ public class PurchasedGood {
     public void setImportTax(double importTax) {
         this.importTax = importTax;
     }
+
+
 }

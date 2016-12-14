@@ -11,6 +11,7 @@
     <string name="purchase_title">Purchase</string>
     <string name="purchased_title">Purchase result</string>
     <string name="purchase_taxes">Purchase taxes</string>
+    <string name="purchase_total">Total</string>
 
 
 </resources>

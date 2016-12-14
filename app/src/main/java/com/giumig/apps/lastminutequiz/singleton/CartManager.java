@@ -56,27 +56,43 @@ public class CartManager {
 
             double finalPrice = currentItem.getPrice();
 
-            if(!isBasicSaleTaxExempt(currentItem))
+            if(!isBasicSaleTaxExempt(currentItem) && currentItem.isImported())
             {
-                //10% sales tax
-                double saleTax = round( currentItem.getPrice() * 0.1);
-                currentPurchasedItem.setBasicSaleTax(saleTax);
-                Log.d(TAG, "sale tax for " + currentItem.getPrice() + ": " + saleTax);
+                double saleTax = (currentItem.getPrice() * 15) / 100;
+                //  double saleTax = round(currentItem.getPrice(), 10);
+                currentPurchasedItem.setBasicSaleTax(round(saleTax));
+     //           Log.d(TAG, "sale tax for " + currentItem.getPrice() + ": " + saleTax);
+            }
+            else {
 
-                finalPrice += saleTax;
+
+                if (!isBasicSaleTaxExempt(currentItem)) {
+                    //10% sales tax
+                    double saleTax = (currentItem.getPrice() * 10) / 100;
+                    //  double saleTax = round(currentItem.getPrice(), 10);
+                    currentPurchasedItem.setBasicSaleTax(round(saleTax));
+                 //   Log.d(TAG, "sale tax for " + currentItem.getPrice() + ": " + round(saleTax));
+
+
+//                    finalPrice = finalPrice + saleTax;
+//                finalPrice = round(finalPrice + saleTax);
+                }
+
+                if (currentItem.isImported()) {
+                    //5% import tax
+                    double importTax = (currentItem.getPrice() * 5) / 100;
+                    //double importTax = round(currentItem.getPrice(), 5);
+                    currentPurchasedItem.setImportTax(round(importTax));
+             //       Log.d(TAG, "import tax for " + currentItem.getPrice() + ": " + round(importTax));
+
+
+//                    finalPrice = finalPrice + importTax;
+//              finalPrice = round(finalPrice + importTax);
+                }
+
             }
 
-            if(currentItem.isImported())
-            {
-                //5% import tax
-                double importTax = round( currentItem.getPrice() * 0.05);
-                currentPurchasedItem.setImportTax(importTax);
-                Log.d(TAG, "import tax for " + currentItem.getPrice() + ": " + importTax);
 
-                finalPrice += importTax;
-            }
-
-            currentPurchasedItem.setFinalPrice(finalPrice);
             purchasedItems.add(currentPurchasedItem);
         }
 
@@ -96,11 +112,34 @@ public class CartManager {
 
     private double round(double value) {
 
-        DecimalFormat df = new DecimalFormat("0.00");
+        return Math.round(value * 20) / 20.0;
+/*
+        DecimalFormat df = new DecimalFormat("#.##");
         String formate = df.format(value);
         try {
-            return (double) df.parse(formate);
+            double rounded = (double) df.parse(formate);
+            Log.d(TAG, "" + value + " was rounded to " + rounded);
+            return rounded;
         } catch (ParseException e) {
+            Log.d(TAG, "" + value + "was not rounded");
+            e.printStackTrace();
+            return value;
+        }
+*/
+    }
+
+    private double round(double value, int taxRate) {
+
+        double val = (value * taxRate) / 100.0;
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formate = df.format(val);
+        try {
+            double rounded = (double) df.parse(formate);
+            Log.d(TAG, "" + value + "("+val+") was rounded to " + rounded);
+            return rounded;
+        } catch (ParseException e) {
+            Log.d(TAG, "" + value + "was not rounded");
             e.printStackTrace();
             return value;
         }

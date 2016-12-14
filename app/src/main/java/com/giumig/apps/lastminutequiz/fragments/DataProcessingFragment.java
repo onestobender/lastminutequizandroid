@@ -1,10 +1,7 @@
 package com.giumig.apps.lastminutequiz.fragments;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.giumig.apps.lastminutequiz.R;
 import com.giumig.apps.lastminutequiz.activities.MainActivity;
@@ -25,6 +21,8 @@ import com.giumig.apps.lastminutequiz.model.PurchasedGood;
 import com.giumig.apps.lastminutequiz.singleton.CartManager;
 import com.giumig.apps.lastminutequiz.singleton.DataManager;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -167,15 +165,18 @@ public class DataProcessingFragment extends BaseFragment {
     private void showPurchaseResult(List<PurchasedGood> items)  {
 
         String message = "";
-        double finalTaxes = 0.0;
+        double finalTaxes = 0.00;
+        double total = 0.00;
 
         for(PurchasedGood current : items)
         {
             message += current.getGood().getType() + ": " + current.getFinalPrice() + "\n";
             finalTaxes += current.getBasicSaleTax() + current.getImportTax();
+            total += current.getFinalPrice();
         }
 
-        message += getString(R.string.purchase_taxes) + ": " + finalTaxes;
+        message += "\n" + getString(R.string.purchase_taxes) + ": " + finalTaxes + "\n";
+        message += getString(R.string.purchase_total) + ": " + total;
 
         //show dialog
         new AlertDialog.Builder(getActivity())
@@ -191,6 +192,8 @@ public class DataProcessingFragment extends BaseFragment {
                 .show();
 
     }
+
+
 
 
 
