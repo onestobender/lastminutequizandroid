@@ -9,6 +9,8 @@
 
     <string name="imported_good_header">Imported</string>
     <string name="purchase_title">Purchase</string>
+    <string name="purchased_title">Purchase result</string>
+    <string name="purchase_taxes">Purchase taxes</string>
 
 
 </resources>

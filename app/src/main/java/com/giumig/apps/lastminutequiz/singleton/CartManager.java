@@ -54,6 +54,8 @@ public class CartManager {
             PurchasedGood currentPurchasedItem = new PurchasedGood();
             currentPurchasedItem.setGood(currentItem);
 
+            double finalPrice = currentItem.getPrice();
+
             if(!isBasicSaleTaxExempt(currentItem))
             {
                 //10% sales tax
@@ -61,6 +63,7 @@ public class CartManager {
                 currentPurchasedItem.setBasicSaleTax(saleTax);
                 Log.d(TAG, "sale tax for " + currentItem.getPrice() + ": " + saleTax);
 
+                finalPrice += saleTax;
             }
 
             if(currentItem.isImported())
@@ -70,9 +73,10 @@ public class CartManager {
                 currentPurchasedItem.setImportTax(importTax);
                 Log.d(TAG, "import tax for " + currentItem.getPrice() + ": " + importTax);
 
+                finalPrice += importTax;
             }
 
-
+            currentPurchasedItem.setFinalPrice(finalPrice);
             purchasedItems.add(currentPurchasedItem);
         }
 

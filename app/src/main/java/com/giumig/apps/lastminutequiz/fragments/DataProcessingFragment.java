@@ -1,9 +1,11 @@
 package com.giumig.apps.lastminutequiz.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -110,11 +112,11 @@ public class DataProcessingFragment extends BaseFragment {
         }
         else if(selectedDataset == 2)
         {
-
+            DataManager.getInstance().loadData2Async(iOnApplicationDataLoad);
         }
         else if(selectedDataset == 3)
         {
-
+            DataManager.getInstance().loadData3Async(iOnApplicationDataLoad);
         }
 
 
@@ -155,11 +157,41 @@ public class DataProcessingFragment extends BaseFragment {
         public void onPurchase(ArrayList<PurchasedGood> purchasedItems) {
 
             Log.d(TAG, "purchase complete");
-            Toast.makeText(getActivity(), "" + purchasedItems.size() + " items purchased", Toast.LENGTH_SHORT).show();
             CartManager.getInstance().emptyCart();
 
+            showPurchaseResult(purchasedItems);
         }
     };
+
+
+    private void showPurchaseResult(List<PurchasedGood> items)  {
+
+        String message = "";
+        double finalTaxes = 0.0;
+
+        for(PurchasedGood current : items)
+        {
+            message += current.getGood().getType() + ": " + current.getFinalPrice() + "\n";
+            finalTaxes += current.getBasicSaleTax() + current.getImportTax();
+        }
+
+        message += getString(R.string.purchase_taxes) + ": " + finalTaxes;
+
+        //show dialog
+        new AlertDialog.Builder(getActivity())
+                .setTitle(getString(R.string.purchased_title))
+                .setMessage(message)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        ((MainActivity) getActivity()).popFragment();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+
+    }
+
 
 
 }

@@ -7,6 +7,9 @@
 
     <string name="imported_good_header">Importato</string>
     <string name="purchase_title">Acquista</string>
+    <string name="purchased_title">Hai acquistato</string>
+    <string name="purchase_taxes">Tasse di vendita</string>
+
 
 
 </resources>

@@ -35,6 +35,18 @@ public class DataManager {
         task.execute(callbacks);
     }
 
+    public void loadData2Async(IOnApplicationDataLoad callbacks) {
+
+        Data2LoadAsyncTask task = new Data2LoadAsyncTask();
+        task.execute(callbacks);
+    }
+
+    public void loadData3Async(IOnApplicationDataLoad callbacks) {
+
+        Data3LoadAsyncTask task = new Data3LoadAsyncTask();
+        task.execute(callbacks);
+    }
+
 
 
 
@@ -98,6 +110,144 @@ public class DataManager {
 
         }
     }
+
+
+
+
+    private class Data2LoadAsyncTask extends AsyncTask<IOnApplicationDataLoad, Void, List<Good>> {
+
+        private IOnApplicationDataLoad callbacks;
+
+        @Override
+        protected List<Good> doInBackground(IOnApplicationDataLoad... params) {
+            callbacks = params[0];
+
+            try {
+                Log.d(TAG, "fake retrieving data delay...(e.g. json dowload from an API)");
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            /**
+             * Input 2:
+             1 imported box of chocolates at 10.00
+             1 imported bottle of perfume at 47.50
+
+             */
+            ArrayList<Good> goods = new ArrayList<>();
+
+            Good importedBox = new Good();
+            importedBox.setType(Good.GoodType.FOOD);
+            importedBox.setPrice(10.00);
+            importedBox.setImported(true);
+
+            Good importedPerfume = new Good();
+            importedPerfume.setType(Good.GoodType.GENERIC);
+            importedPerfume.setPrice(47.50);
+            importedPerfume.setImported(true);
+
+            goods.add(importedBox);
+            goods.add(importedPerfume);
+
+            return goods;
+
+
+            /**
+             *  if an error occurred (e.g. network problems) return null
+             *  and propagate to UI IOnApplicationDataLoad.onApplicationDataLoadfail()
+             */
+
+
+        }
+
+
+        @Override
+        protected void onPostExecute(List<Good> goods) {
+            super.onPostExecute(goods);
+
+            callbacks.onApplicationDataLoadSuccess(goods);
+
+        }
+    }
+
+
+
+
+
+    private class Data3LoadAsyncTask extends AsyncTask<IOnApplicationDataLoad, Void, List<Good>> {
+
+        private IOnApplicationDataLoad callbacks;
+
+        @Override
+        protected List<Good> doInBackground(IOnApplicationDataLoad... params) {
+            callbacks = params[0];
+
+            try {
+                Log.d(TAG, "fake retrieving data delay...(e.g. json dowload from an API)");
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            /**
+             * Input 3:
+             1 imported bottle of perfume at 27.99
+             1 bottle of perfume at 18.99
+             1 packet of headache pills at 9.75
+             1 box of imported chocolates at 11.25
+
+
+             */
+            ArrayList<Good> goods = new ArrayList<>();
+
+            Good importedPerfume = new Good();
+            importedPerfume.setType(Good.GoodType.GENERIC);
+            importedPerfume.setPrice(27.99);
+            importedPerfume.setImported(true);
+
+            Good perfume = new Good();
+            perfume.setType(Good.GoodType.GENERIC);
+            perfume.setPrice(18.99);
+
+            Good pills = new Good();
+            pills.setType(Good.GoodType.MEDICAL_PRODUCT);
+            pills.setPrice(9.75);
+
+            Good importedBox = new Good();
+            importedBox.setType(Good.GoodType.FOOD);
+            importedBox.setPrice(11.25);
+            importedBox.setImported(true);
+
+            goods.add(importedPerfume);
+            goods.add(perfume);
+            goods.add(pills);
+            goods.add(importedBox);
+
+            return goods;
+
+
+            /**
+             *  if an error occurred (e.g. network problems) return null
+             *  and propagate to UI IOnApplicationDataLoad.onApplicationDataLoadfail()
+             */
+
+
+        }
+
+
+        @Override
+        protected void onPostExecute(List<Good> goods) {
+            super.onPostExecute(goods);
+
+            callbacks.onApplicationDataLoadSuccess(goods);
+
+        }
+    }
+
+
+
+
 
 
 

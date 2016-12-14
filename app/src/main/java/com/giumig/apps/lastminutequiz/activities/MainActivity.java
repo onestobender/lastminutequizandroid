@@ -130,7 +130,12 @@ public class MainActivity extends AppCompatActivity {
              */
             getSupportFragmentManager().popBackStackImmediate();
         }
-
-
     }
+
+
+    public void popFragment()   {
+        onBackPressed();
+    }
+
+
 }
