@@ -22,7 +22,8 @@ public class PurchasedGood {
     }
 
     public double getFinalPrice() {
-        return good.getPrice() + getBasicSaleTax() + getImportTax();
+        return (double)Math.round((good.getPrice() + getBasicSaleTax() + getImportTax()) * 100.0) / 100.0;
+//        return good.getPrice() + getBasicSaleTax() + getImportTax();
     }
 
 

@@ -171,8 +171,12 @@ public class DataProcessingFragment extends BaseFragment {
         for(PurchasedGood current : items)
         {
             message += current.getGood().getType() + ": " + current.getFinalPrice() + "\n";
-            finalTaxes += current.getBasicSaleTax() + current.getImportTax();
-            total += current.getFinalPrice();
+
+        //    finalTaxes += current.getBasicSaleTax() + current.getImportTax();
+        //    total += current.getFinalPrice();
+
+            finalTaxes = (double)Math.round((finalTaxes + current.getBasicSaleTax() + current.getImportTax())*100.0)/100.0;
+            total = (double)Math.round((total + current.getFinalPrice())*100.0)/100.0;
         }
 
         message += "\n" + getString(R.string.purchase_taxes) + ": " + finalTaxes + "\n";
